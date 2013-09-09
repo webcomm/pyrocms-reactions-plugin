@@ -1,0 +1,45 @@
+<ul class="project-shares">
+    {{ reactions:facebook }}
+        <li class="share-facebook">
+            <a href="{{ share_url }}" rel="nofollow" data-target="popup" data-width="660" data-height="300">
+                <i class="icon-facebook"></i>
+                {{ shares }}
+            </a>
+        </li>
+    {{ /reactions:facebook }}
+    {{ reactions:twitter }}
+        <li class="share-twitter">
+            <a href="{{ tweet_url }}" rel="nofollow" data-target="popup" data-width="660" data-height="300">
+                <i class="icon-twitter"></i>
+                {{ count }}
+            </a>
+        </li>
+    {{ /reactions:twitter }}
+    {{ reactions:pinterest url=project_image_1:image }}
+        <li class="share-pinterest">
+            <a href="{{ create_url }}" rel="nofollow" data-target="popup" data-width="660" data-height="640">
+                <i class="icon-pinterest"></i>
+                {{ count }}
+            </a>
+        </li>
+    {{ /reactions:pinterest }}
+</ul>
+
+<script>
+$(document).ready(function() {
+    $('[data-target="popup"]').each(function() {
+        var $link = $(this),
+            width = $link.data('width') ? $link.data('width') : 600,
+           height = $link.data('height') ? $link.data('height') : 400;
+
+        $link.on('click', function(e) {
+            e.preventDefault();
+
+            window.open(
+                $link.attr('href'),
+                null,
+                'width='+width+',height='+height+',resizable=0,toolbar=0,menubar=0,status=0,location=0,scrollbars=0'
+            );
+        });
+    });
+});
